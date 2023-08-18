@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using WalletConnectSharp.Core.Models;
 using System.Numerics;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public struct WalletButton
@@ -27,6 +28,14 @@ public class Prefab_ConnectWallet : MonoBehaviour
 {
     [Header("SETTINGS")]
     public List<WalletProvider> supportedWallets = new List<WalletProvider>() { WalletProvider.LocalWallet, WalletProvider.WalletConnectV1 };
+
+    [Header("Connected States")]
+    public GameObject LoginScreen;
+    public GameObject ConnectedState;
+    public GameObject DisconnectedState;
+    public String PlayMenuSceneName;
+
+
 
     [Header("CUSTOM CALLBACKS")]
     public UnityEvent OnConnectedCallback;
@@ -143,6 +152,12 @@ public class Prefab_ConnectWallet : MonoBehaviour
 
         passwordPanel.SetActive(false);
         emailPanel.SetActive(false);
+
+        ConnectedState.SetActive(false);
+        DisconnectedState.SetActive(true);
+
+
+
     }
 
     public void OpenPasswordPanel()
@@ -185,6 +200,9 @@ public class Prefab_ConnectWallet : MonoBehaviour
             OnConnected();
             OnConnectedCallback?.Invoke();
             Debug.Log($"Connected successfully to: {address}");
+            
+            LoginScreen.GetComponent<loginScreen>().toggleLoginScreen(ConnectedState, DisconnectedState);
+            SceneManager.LoadScene(PlayMenuSceneName);
         }
         catch (Exception e)
         {
