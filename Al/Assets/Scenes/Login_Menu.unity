@@ -834,6 +834,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 379ed01658d62a14484f953196ff19db, type: 3}
+--- !u!1 &1590835170 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 696252699284340127, guid: a6218c0a90161f349bc6bc87fbc624da, type: 3}
+  m_PrefabInstance: {fileID: 2024612888}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1715729360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1311,6 +1316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d227bc721654345979adf6ccd07f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walletConnection: {fileID: 1590835170}
 --- !u!1001 &2024612888
 PrefabInstance:
   m_ObjectHideFlags: 0
