@@ -653,6 +653,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
+    Standalone: RH_SerializedDictionary
     WebGL: RH_SerializedDictionary
   additionalCompilerArguments: {}
   platformArchitecture: {}
