@@ -1,48 +1,67 @@
 using UnityEngine;
 using System.Collections;
+using Photon.Pun;
 
 public class PlayerController : MonoBehaviour
 {
 
-    public float moveSpeed;
+    public float moveSpeed = 3;
     private KeyCode lastHitKey;
     public Animator animator;
+    public GameObject player;
+
+    PhotonView view;
 
     void Start()
     {
+        view = GetComponent<PhotonView>();
     }
 
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
 
-        // Calculate the new position based on input and speed
-        Vector3 newPosition = transform.position + new Vector3(horizontalInput * moveSpeed * Time.deltaTime, verticalInput * moveSpeed * Time.deltaTime, 0f);
-        if (isMoving())
+        //Debug.Log(player.transform.position.ToString());
+
+        if(Input.GetKey(KeyCode.Escape))
         {
-            Debug.Log("Moving");
-            animator.SetBool("isRunning", true);
-        }
-        else 
-        {      
-            animator.SetBool("isRunning", false);
+            GameScript gs = GameObject.Find("GameScript").GetComponent<GameScript>();
+            gs.getNFTMedia();
         }
 
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (view.IsMine)
         {
-            Debug.Log("attacking");
-            animator.SetBool("isAttacking", true);
+            float horizontalInput = Input.GetAxis("Horizontal");
+            float verticalInput = Input.GetAxis("Vertical");
+
+            // Calculate the new position based on input and speed
+            Vector3 newPosition = transform.position + new Vector3(horizontalInput * moveSpeed * Time.deltaTime, verticalInput * moveSpeed * Time.deltaTime, 0f);
+            if (isMoving())
+            {
+                Debug.Log("Moving");
+                animator.SetBool("isRunning", true);
+            }
+            else
+            {
+                animator.SetBool("isRunning", false);
+            }
+
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                Debug.Log("attacking");
+                animator.SetBool("isAttacking", true);
+            }
+            else
+            {
+                animator.SetBool("isAttacking", false);
+            }
+
+
+
+            // Update the player's position
+            transform.position = newPosition;
         }
-        else
-        {
-            animator.SetBool("isAttacking", false);
-        }
 
-
-
-        // Update the player's position
-        transform.position = newPosition;
+        
     }
 
     private bool isMoving()
@@ -55,5 +74,5 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Collision detected!");
     }
 
-}   
+}
 

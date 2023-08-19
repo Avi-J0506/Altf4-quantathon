@@ -20,18 +20,18 @@ public class PlayMenuScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("GameLevel");
+        SceneManager.LoadScene("LoadingScene");
     }
 
     public void Profile()
     {
         Debug.Log("Profile");
     }
+
 
     //public void 
 

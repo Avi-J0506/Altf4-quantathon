@@ -91,6 +91,9 @@ public class Prefab_ConnectWallet : MonoBehaviour
 
     private void Start()
     {
+
+        PlayerPrefs.SetString("address", address);
+
         address = null;
 
         if (supportedWallets.Count == 1)
