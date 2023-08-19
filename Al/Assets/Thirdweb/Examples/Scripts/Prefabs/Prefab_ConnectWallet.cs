@@ -30,7 +30,7 @@ public class Prefab_ConnectWallet : MonoBehaviour
     public List<WalletProvider> supportedWallets = new List<WalletProvider>() { WalletProvider.LocalWallet, WalletProvider.WalletConnectV1 };
 
     [Header("Connection Status")]
-    private bool connected;
+    //private bool connected;
     public Button PlayBtn;
     public Button ProfileBtn;
 
@@ -152,7 +152,7 @@ public class Prefab_ConnectWallet : MonoBehaviour
         passwordPanel.SetActive(false);
         emailPanel.SetActive(false);
 
-        connected = false;
+        //connected = false;
         PlayBtn.interactable = false;
         ProfileBtn.interactable = false;
 
@@ -199,7 +199,7 @@ public class Prefab_ConnectWallet : MonoBehaviour
             OnConnected();
             OnConnectedCallback?.Invoke();
             Debug.Log($"Connected successfully to: {address}");
-            connected = true;
+            //connected = true;
             PlayBtn.interactable = true;
             ProfileBtn.interactable = true;
 
